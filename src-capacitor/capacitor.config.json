@@ -1,6 +1,6 @@
 {
   "appId": "com.ajjafoodnl.order",
-  "appName": "AJJAORDER",
+  "appName": "ajjabestel",
   "webDir": "www",
   "android": {
     "adjustMarginsForEdgeToEdge": "force"
