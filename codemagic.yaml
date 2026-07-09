@@ -1,11 +1,11 @@
 workflows:
   ios-release:
-    name: Karenderia Customer iOS
+    name: ajjabestel
 
     max_build_duration: 120
 
     environment:
-      node: 20
+      node: 18
       xcode: latest
       cocoapods: default
 
@@ -18,30 +18,22 @@ workflows:
         script: |
           npm install
 
-      - name: Install Capacitor iOS
-        script: |
-          npm install @capacitor/ios
-
-      - name: Sync Capacitor
-        script: |
-          npx cap sync ios
-
-      - name: Install CocoaPods
-        script: |
-          cd ios/App
-          pod install
-          cd ../..
-
       - name: Build Quasar
         script: |
           quasar build -m capacitor -T ios
 
-      - name: Build iOS IPA
+      - name: Install iOS Pods
+        script: |
+          cd src-capacitor/ios/App
+          pod install
+          cd ../../..
+
+      - name: Build IPA
         script: |
           xcode-project build-ipa \
-            --workspace ios/App/App.xcworkspace \
+            --workspace src-capacitor/ios/App/App.xcworkspace \
             --scheme App
 
-   artifacts:
-  - build/ios/ipa/*.ipa
-  - /tmp/xcodebuild_logs/*.log
+    artifacts:
+      - build/ios/ipa/*.ipa
+      - /tmp/xcodebuild_logs/*.log
