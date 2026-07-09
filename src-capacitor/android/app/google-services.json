@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1036240435963",
+    "project_id": "ajjafoodnl",
+    "storage_bucket": "ajjafoodnl.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1036240435963:android:e74d85ac0604c718e14e5e",
+        "android_client_info": {
+          "package_name": "com.ajjafoodnl.order"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC5yw0rkdlRfJxcYlqS8zGB48EBacZ43c0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,15 @@
+{
+  "appId": "com.ajjafoodnl.order",
+  "appName": "AJJAORDER",
+  "webDir": "www",
+  "android": {
+    "adjustMarginsForEdgeToEdge": "force"
+  },
+  "plugins": {
+    "StatusBar": {
+      "overlaysWebView": false,
+      "style": "LIGHT",
+      "backgroundColor": "#ff724c"
+    }
+  }
+}
