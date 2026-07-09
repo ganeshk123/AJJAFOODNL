@@ -35,7 +35,6 @@ def capacitor_pods
 end
 
 target 'App' do
-  pod 'Firebase/Messaging', '8.1.1'
   capacitor_pods
   # Add your Pods here
 end
