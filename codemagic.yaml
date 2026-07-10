@@ -1,6 +1,6 @@
 workflows:
   ios-release:
-    name: ajjabestel
+    name: AJJABESTEL
 
     max_build_duration: 120
 
@@ -15,16 +15,13 @@ workflows:
 
     scripts:
       - name: Install Quasar CLI
-        script: |
-          npm install -g @quasar/cli
+        script: npm install -g @quasar/cli
 
-      - name: Install Dependencies
-        script: |
-          npm install
+      - name: Install dependencies
+        script: npm install
 
       - name: Build Quasar
-        script: |
-          quasar build -m capacitor -T ios
+        script: quasar build -m capacitor -T ios
 
       - name: Install Pods
         script: |
@@ -32,16 +29,14 @@ workflows:
           pod install
           cd ../../..
 
-      - name: Apply Code Signing
-        script: |
-          xcode-project use-profiles
+      - name: Apply signing
+        script: xcode-project use-profiles
 
       - name: Build IPA
         script: |
           xcode-project build-ipa \
             --workspace src-capacitor/ios/App/App.xcworkspace \
-            --scheme App \
-            --archive-xcargs "-allowProvisioningUpdates DEVELOPMENT_TEAM=84J4HVD6CW"
+            --scheme App
 
     artifacts:
       - build/ios/ipa/*.ipa
