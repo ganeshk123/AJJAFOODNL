@@ -26,21 +26,27 @@ workflows:
         script: |
           quasar build -m capacitor -T ios
 
-      - name: Install Pods
+      - name: Fetch Signing Files
+        script: |
+          app-store-connect fetch-signing-files com.ajjafoodnl.order --type IOS_APP_DEVELOPMENT
+
+      - name: Install CocoaPods
         script: |
           cd src-capacitor/ios/App
           pod install
           cd ../../..
 
-      - name: Apply Code Signing
+      - name: Apply Provisioning Profiles
         script: |
           xcode-project use-profiles
 
-      - name: Build IPA
+      - name: Build Development IPA
         script: |
           xcode-project build-ipa \
             --workspace src-capacitor/ios/App/App.xcworkspace \
-            --scheme App
+            --scheme App \
+            --configuration Debug \
+            --archive-xcargs "DEVELOPMENT_TEAM=84J4HVD6CW"
 
     artifacts:
       - build/ios/ipa/*.ipa
