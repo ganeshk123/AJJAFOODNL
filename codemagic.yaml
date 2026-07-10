@@ -4,9 +4,6 @@ workflows:
 
     max_build_duration: 120
 
-    integrations:
-      app_store_connect: AppStore
-
     environment:
       node: 20
       xcode: latest
@@ -32,16 +29,8 @@ workflows:
           pod install
           cd ../../..
 
-      - name: Fetch Signing Files
-        script: |
-          app-store-connect fetch-signing-files \
-            com.ajjafoodnl.order \
-            --type IOS_APP_DEVELOPMENT \
-            --create
-
-      - name: Apply Signing
-        script: |
-          xcode-project use-profiles
+      - name: Apply signing
+        script: xcode-project use-profiles
 
       - name: Build IPA
         script: |
