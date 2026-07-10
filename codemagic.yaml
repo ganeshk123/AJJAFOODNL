@@ -1,6 +1,6 @@
 workflows:
   ios-release:
-    name: AJJABESTEL
+    name: ajjabestel
 
     max_build_duration: 120
 
