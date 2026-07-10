@@ -1,6 +1,6 @@
 workflows:
   ios-release:
-    name: AJJABESTEL iOS
+    name: AJJABESTEL
 
     max_build_duration: 120
 
@@ -53,7 +53,7 @@ workflows:
     publishing:
       email:
         recipients:
-          - bastikikang@gmail.com
+          - ganesh.korde7@gmail.com
         notify:
           success: true
           failure: true
