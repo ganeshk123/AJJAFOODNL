@@ -13,9 +13,6 @@ workflows:
         distribution_type: development
         bundle_identifier: com.ajjafoodnl.order
 
-    integrations:
-      app_store_connect: ajjabestelTest
-
     scripts:
       - name: Install Quasar CLI
         script: |
@@ -25,17 +22,17 @@ workflows:
         script: |
           npm install
 
-      - name: Build Quasar App
+      - name: Build Quasar
         script: |
           quasar build -m capacitor -T ios
 
-      - name: Install CocoaPods
+      - name: Install Pods
         script: |
           cd src-capacitor/ios/App
           pod install
           cd ../../..
 
-      - name: Apply Provisioning Profiles
+      - name: Apply Code Signing
         script: |
           xcode-project use-profiles
 
@@ -43,8 +40,7 @@ workflows:
         script: |
           xcode-project build-ipa \
             --workspace src-capacitor/ios/App/App.xcworkspace \
-            --scheme App \
-            --archive-xcargs "DEVELOPMENT_TEAM=84J4HVD6CW"
+            --scheme App
 
     artifacts:
       - build/ios/ipa/*.ipa
