@@ -41,9 +41,14 @@ workflows:
 
       - name: Build IPA
         script: |
-          xcode-project build-ipa \
-            --workspace src-capacitor/ios/App/App.xcworkspace \
-            --scheme App
+    xcode-project use-profiles
+
+- name: Build signed IPA
+  script: |
+    xcode-project build-ipa \
+      --workspace src-capacitor/ios/App/App.xcworkspace \
+      --scheme App \
+      --archive-xcargs "DEVELOPMENT_TEAM=84J4HVD6CW"
 
     artifacts:
       - build/ios/ipa/*.ipa
