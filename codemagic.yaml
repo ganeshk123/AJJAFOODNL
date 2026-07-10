@@ -1,6 +1,6 @@
 workflows:
   ios-release:
-    name: ajjabestel
+    name: AJJABESTEL iOS
 
     max_build_duration: 120
 
@@ -14,42 +14,46 @@ workflows:
         bundle_identifier: com.ajjafoodnl.order
 
     integrations:
-      app_store_connect: Codemagic
+      app_store_connect: ajjabestelTest
 
     scripts:
       - name: Install Quasar CLI
         script: |
           npm install -g @quasar/cli
 
-      - name: Install dependencies
+      - name: Install Dependencies
         script: |
           npm install
 
-      - name: Build Quasar
+      - name: Build Quasar App
         script: |
           quasar build -m capacitor -T ios
 
-      - name: Install Pods
+      - name: Install CocoaPods
         script: |
           cd src-capacitor/ios/App
           pod install
           cd ../../..
 
-      - name: Set up code signing
+      - name: Apply Provisioning Profiles
         script: |
           xcode-project use-profiles
 
       - name: Build IPA
         script: |
-    xcode-project use-profiles
-
-- name: Build signed IPA
-  script: |
-    xcode-project build-ipa \
-      --workspace src-capacitor/ios/App/App.xcworkspace \
-      --scheme App \
-      --archive-xcargs "DEVELOPMENT_TEAM=84J4HVD6CW"
+          xcode-project build-ipa \
+            --workspace src-capacitor/ios/App/App.xcworkspace \
+            --scheme App \
+            --archive-xcargs "DEVELOPMENT_TEAM=84J4HVD6CW"
 
     artifacts:
       - build/ios/ipa/*.ipa
       - /tmp/xcodebuild_logs/*.log
+
+    publishing:
+      email:
+        recipients:
+          - bastikikang@gmail.com
+        notify:
+          success: true
+          failure: true
